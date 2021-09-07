@@ -44,7 +44,7 @@ def fetch_file(product: str, url: str, overwrite: bool = False):
 
     file_exists = savepath.exists()
     if (file_exists and overwrite) or (not file_exists):
-        ic(url, file_exists, overwrite, prefix="fetch_file downloading ->")
+        ic("fetch_file downloading ->", url, file_exists, overwrite)
         fetch(savepath, parsed_url)
     else:
-        ic(url, file_exists, overwrite, prefix="fetch_file skipped ->")
+        ic("fetch_file skipped ->", url, file_exists, overwrite)
