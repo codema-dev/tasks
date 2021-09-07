@@ -4,7 +4,7 @@ from typing import Dict
 from typing import Callable
 from typing import Union
 
-import icecream as ic
+from icecream import ic
 import hyperlink
 
 from ._compat import import_optional_dependency
