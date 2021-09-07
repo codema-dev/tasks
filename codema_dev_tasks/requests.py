@@ -1,14 +1,22 @@
 from pathlib import Path
 import requests
-from typing import Any
+from typing import Dict
+from typing import Callable
+from typing import Union
 
-from _compat import import_optional_dependency
+import hyperlink
+
+from ._compat import import_optional_dependency
+
+URL = Dict[str, Callable[[str, Union[hyperlink.URL, hyperlink.DecodedURL]], None]]
 
 
-def fetch_s3_file(product: str, bucket: str) -> None:
+def _fetch_from_s3(product: str, url: URL) -> None:
 
     fs = import_optional_dependency("fs", "fs is required to run fetch_s3_file")
     from fs.tools import copy_file_data
+
+    bucket = url.host
 
     filepath = Path(product)
     filename = filepath.name
@@ -19,8 +27,19 @@ def fetch_s3_file(product: str, bucket: str) -> None:
                 copy_file_data(remote_file, local_file)
 
 
-def fetch_file(product: str, url: str):
+def _fetch_from_http(product: str, url: URL) -> None:
     filepath = Path(product)
     r = requests.get(url)
     with open(filepath, "wb") as f:
         f.write(r.content)
+
+
+def fetch_file(product: str, url: str):
+    parsed_url = hyperlink.parse(url)
+    _scheme_map = {
+        "http": _fetch_from_http,
+        "https": _fetch_from_http,
+        "s3": _fetch_from_s3,
+    }
+    fetch = _scheme_map[parsed_url.scheme]
+    fetch(product, parsed_url)
