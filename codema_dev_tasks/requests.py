@@ -4,6 +4,7 @@ from typing import Dict
 from typing import Callable
 from typing import Union
 
+import icecream as ic
 import hyperlink
 
 from ._compat import import_optional_dependency
@@ -41,5 +42,9 @@ def fetch_file(product: str, url: str, overwrite: bool = False):
     }
     fetch = _scheme_map[parsed_url.scheme]
 
-    if not savepath.exists() or overwrite:
+    file_exists = savepath.exists()
+    if (file_exists and overwrite) or (not file_exists):
+        ic(url, file_exists, overwrite, prefix="fetch_file downloading ->")
         fetch(savepath, parsed_url)
+    else:
+        ic(url, file_exists, overwrite, prefix="fetch_file skipped ->")
