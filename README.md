@@ -13,7 +13,7 @@ pip install git+https://github.com/codema-dev/tasks
 
 ---
 
-- download via **http(s)** or **s3**
+#### download via **http(s)** or **s3**
 
 > **note:** s3 searches your environmental variables for your credentials, you must set these in a separate task
 
@@ -33,7 +33,7 @@ tasks:
 
 ---
 
-- file exists?
+#### file exists?
 
 > i.e. depend on raw data that must be uploaded manually
 
@@ -43,4 +43,36 @@ tasks:
    params:
      filepath: YOUR-FILEPATH
    product: YOUR-FILEPATH
+```
+
+---
+
+#### load environmental variables
+
+Add a `.env` file with your credentials:
+
+```
+MY_CREDENTIALS=*****
+```
+
+task-level hook:
+> loads environmental variables before executing the task!
+```yaml
+tasks:
+  - source: codema_dev_tasks.requests.fetch_file
+    params:
+      url: YOUR-URL
+    product: YOUR-FILEPATH
+    on_render: codema_dev_tasks.hooks.load_environmental_variables 
+```
+
+Or DAG-level hook:
+
+| :exclamation: | Requires `ploomber >0.12.7`  |
+| ------------- | ---------------------------- |
+
+```yaml
+on_render: codema_dev_tasks.hooks.load_environmental_variables 
+tasks:
+  ...
 ```

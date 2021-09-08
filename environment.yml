@@ -1,0 +1,7 @@
+name: codema-dev-tasks
+channels:
+  - conda-forge
+dependencies:
+  - python-dotenv
+  - fs-s3fs
+  - requests
