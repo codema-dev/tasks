@@ -13,8 +13,7 @@ URL = Dict[str, Callable[[str, Union[hyperlink.URL, hyperlink.DecodedURL]], None
 
 def _fetch_from_s3(savepath: Path, url: URL) -> None:
 
-    fs = import_optional_dependency("fs", "fs is required to run _fetch_from_s3")
-    botocore = import_optional_dependency("botocore", "fs is required to run _fetch_from_s3")
+    fs = import_optional_dependency("fs", "fs-s3fs is required to run _fetch_from_s3")
     from fs.tools import copy_file_data
     from botocore.exceptions import NoCredentialsError
 
