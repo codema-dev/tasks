@@ -10,15 +10,18 @@ from ._compat import import_optional_dependency
 
 URL = Dict[str, Callable[[str, Union[hyperlink.URL, hyperlink.DecodedURL]], None]]
 
+
 def _fetch_from_s3(savepath: Path, url: URL) -> None:
 
-    fs = import_optional_dependency("fs", "fs is required to run fetch_s3_file")
+    fs = import_optional_dependency("fs", "fs is required to run _fetch_from_s3")
+    botocore = import_optional_dependency("botocore", "fs is required to run _fetch_from_s3")
     from fs.tools import copy_file_data
+    from botocore.exceptions import NoCredentialsError
 
-    bucket = url.host
-
+    bucket_name = url.host
+    bucket_link = "s3://" + bucket_name
+    s3fs = fs.open_fs(bucket_link)
     filename = savepath.name
-    s3fs = fs.open_fs(bucket)
     with s3fs.open(filename, "rb") as remote_file:
         with open(savepath, "wb") as local_file:
             copy_file_data(remote_file, local_file)
