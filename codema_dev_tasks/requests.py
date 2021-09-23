@@ -5,10 +5,10 @@ from typing import Callable
 from typing import Tuple
 from typing import Union
 
-import fsspec
-
+from ._compat import import_optional_dependency
 
 def fetch_file(product: str, url: str, overwrite: bool = False):
+    fsspec = import_optional_dependency("fsspec", "python-dotenv is required to run fetch_file")
     savepath = Path(product)
     file_exists = savepath.exists()
     if (file_exists and overwrite) or (not file_exists):
