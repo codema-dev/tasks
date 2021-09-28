@@ -78,7 +78,9 @@ Or DAG-level hook:
 | ------------- | ---------------------------- |
 
 ```yaml
-on_render: codema_dev_tasks.hooks.load_environmental_variables 
+on_render:
+  dotted_path: codema_dev_tasks.hooks.load_environmental_variables
+  dotenv_path: ".env"
 tasks:
   ...
 ```
