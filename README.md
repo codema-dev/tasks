@@ -1,10 +1,16 @@
 # tasks
+
+[![PyPI version shields.io](https://img.shields.io/pypi/v/codema-dev-tasks.svg)](https://pypi.python.org/pypi/codema-dev-tasks/)
+[![PyPI license](https://img.shields.io/pypi/l/codema-dev-tasks.svg)](https://pypi.python.org/pypi/codema-dev-tasks/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/codema-dev-tasks.svg)](https://pypi.python.org/pypi/codema-dev-tasks/)
+[![PyPI status](https://img.shields.io/pypi/status/codema-dev-tasks.svg)](https://pypi.python.org/pypi/codema-dev-tasks/)
+
 A collection of Python helper functions for use in ETL pipelines
 
 ## setup
 
 ```bash
-pip install git+https://github.com/codema-dev/tasks
+pip install codema-dev-tasks
 ```
 
 ## usage
