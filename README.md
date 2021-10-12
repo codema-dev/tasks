@@ -52,6 +52,6 @@ tasks:
   - source: codema_dev_tasks.requests.fetch_file
     params:
       url: YOUR-URL
-      dotenv_path: "{{here}}/.env
+      dotenv_path: "{{here}}/.env"
     product: YOUR-FILEPATH
 ```
