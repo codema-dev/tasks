@@ -21,8 +21,6 @@ pip install codema-dev-tasks
 
 #### download via **http(s)** or **s3**
 
-> **note:** s3 searches your environmental variables for your credentials, you must set these in a separate task
-
 ```yaml
 tasks:
 - source: codema_dev_tasks.requests.fetch_file
@@ -32,10 +30,10 @@ tasks:
   product: YOUR-FILEPATH
 ```
 
-| host        | use?                                  |
-| ----------- | ------------------------------------- |
-| **http(s)** | `url: s3://www.WEBSITE.com`           |
-| **s3**      | `url: s3://BUCKET-NAME/OBJECT-NAME`   |
+| host | use? | note |
+| --- | --- | --- |
+| **http(s)** | `url: s3://www.WEBSITE.com` | -    |
+| **s3** | `url: s3://BUCKET-NAME/OBJECT-NAME` | If the data is not public you must save your credentials as environmental variables in a `.env` file |
 
 ---
 
