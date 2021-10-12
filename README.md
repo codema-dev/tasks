@@ -55,32 +55,19 @@ tasks:
 
 #### load environmental variables
 
-Add a `.env` file with your credentials:
+Add a `.env` file with your credentials to your current working directory
 
 ```
 MY_CREDENTIALS=*****
 ```
 
-task-level hook:
-> loads environmental variables before executing the task!
+Load the `.env` file within the `fetch_file` task
+
 ```yaml
 tasks:
   - source: codema_dev_tasks.requests.fetch_file
     params:
       url: YOUR-URL
+      dotenv_path: "{{here}}/.env
     product: YOUR-FILEPATH
-    on_render: codema_dev_tasks.hooks.load_environmental_variables 
-```
-
-Or DAG-level hook:
-
-| :exclamation: | Requires `ploomber >0.12.7`  |
-| ------------- | ---------------------------- |
-
-```yaml
-on_render:
-  dotted_path: codema_dev_tasks.hooks.load_environmental_variables
-  dotenv_path: ".env"
-tasks:
-  ...
 ```
