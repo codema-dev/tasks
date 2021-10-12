@@ -39,20 +39,6 @@ tasks:
 
 ---
 
-#### file exists?
-
-> i.e. depend on raw data that must be uploaded manually
-
-```yaml
- - source: download.check_file_exists
-   name: check_YOUR_FILEPATH_is_uploaded
-   params:
-     filepath: YOUR-FILEPATH
-   product: YOUR-FILEPATH
-```
-
----
-
 #### load environmental variables
 
 Add a `.env` file with your credentials to your current working directory
