@@ -32,7 +32,7 @@ tasks:
 
 | host | use? | note |
 | --- | --- | --- |
-| **http(s)** | `url: s3://www.WEBSITE.com` | -    |
+| **http(s)** | `url: https://www.WEBSITE.com` | - |
 | **s3** | `url: s3://BUCKET-NAME/OBJECT-NAME` | If the data is not public you must save your credentials as environmental variables in a `.env` file |
 
 ---
